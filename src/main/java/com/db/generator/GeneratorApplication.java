@@ -1,25 +1,17 @@
 package com.db.generator;
 
 import com.cf.client.poloniex.PoloniexExchangeService;
-import com.cf.data.model.poloniex.PoloniexChartData;
+import com.db.generator.http_aggregator.ChartAggregator;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
-
-import java.time.ZoneOffset;
-import java.time.ZonedDateTime;
-import java.util.List;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
+@EnableScheduling
 public class GeneratorApplication {
-    @Value("${pl.apikey}")
-    private String apiKey;
-
-    @Value("${pl.apisecret}")
-    private String apiSecret;
-
     public static void main(String[] args) {
         ConfigurableApplicationContext applicationContext =
                 SpringApplication.run(GeneratorApplication.class, args);
@@ -27,13 +19,5 @@ public class GeneratorApplication {
         applicationContext.getBean(ChartAggregator.class)
                 .getBtcDailyChartDataStartingFromYesterday();
         System.out.println();
-    }
-
-    @Bean
-    public PoloniexExchangeService poloniexExchangeService() {
-        PoloniexExchangeService service =
-                new PoloniexExchangeService(apiKey, apiSecret);
-
-        return service;
     }
 }

@@ -1,4 +1,4 @@
-package com.db.generator;
+package com.db.generator.http_aggregator;
 
 
 import com.cf.client.poloniex.PoloniexExchangeService;

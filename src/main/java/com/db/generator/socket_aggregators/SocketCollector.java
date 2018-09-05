@@ -1,16 +1,17 @@
-package com.db.generator;
+package com.db.generator.socket_aggregators;
 
 import com.cf.client.WSSClient;
 import com.cf.client.poloniex.wss.model.PoloniexWSSSubscription;
 import com.cf.client.wss.handler.IMessageHandler;
-import com.cf.client.wss.handler.TickerMessageHandler;
 import com.cf.example.PoloniexWSSClientExample;
+import com.db.generator.profile.Socket;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-
+// only for learning purposes (don't use this class)
+@Socket
 @Component
 public class SocketCollector {
 

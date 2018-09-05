@@ -1,15 +1,18 @@
-package com.db.generator;
+package com.db.generator.socket_aggregators;
 
 import com.cf.client.poloniex.wss.model.PoloniexWSSTicker;
 import com.cf.client.wss.handler.IMessageHandler;
+import com.db.generator.profile.Socket;
 import com.google.gson.Gson;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.List;
 
+@Socket
 @Component
 public class SimpleHandler implements IMessageHandler {
     private static final Logger LOG = LogManager.getLogger();
@@ -20,8 +23,7 @@ public class SimpleHandler implements IMessageHandler {
 
     public void handle(String message) {
         PoloniexWSSTicker ticker = this.mapMessageToPoloniexTicker(message);
-//        LOG.debug(ticker);
-        System.out.println(ticker);
+        LOG.debug(ticker);
     }
 
     protected PoloniexWSSTicker mapMessageToPoloniexTicker(String message) {
