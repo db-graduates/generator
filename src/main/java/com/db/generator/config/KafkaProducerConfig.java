@@ -1,9 +1,8 @@
 package com.db.generator.config;
 
-import com.cf.data.model.poloniex.PoloniexChartData;
+import com.db.generator.message.Message;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.LongSerializer;
-import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,7 +12,6 @@ import org.springframework.kafka.core.ProducerFactory;
 import org.springframework.kafka.support.serializer.JsonSerializer;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Configuration
@@ -23,7 +21,7 @@ public class KafkaProducerConfig {
     private String serverAddress;
 
     @Bean
-    public ProducerFactory<Long, List<PoloniexChartData>> producerFactory() {
+    public ProducerFactory<Long, Message> producerFactory() {
         Map<String, Object> configProps = new HashMap<>();
         configProps.put(
                 ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,
@@ -38,7 +36,7 @@ public class KafkaProducerConfig {
     }
 
     @Bean
-    public KafkaTemplate<Long, List<PoloniexChartData>> kafkaTemplate() {
-        return new KafkaTemplate<Long, List<PoloniexChartData>>(producerFactory());
+    public KafkaTemplate<Long, Message> kafkaTemplate() {
+        return new KafkaTemplate<Long, Message>(producerFactory());
     }
 }
