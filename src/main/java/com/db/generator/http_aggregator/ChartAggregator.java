@@ -20,15 +20,17 @@ public class ChartAggregator {
     @Value("${pl.currency}")
     private String currency;
 
+    @Value("${pl.time.step.back}")
+    private Long timeStepBack;
+
     @Value("${pl.time.period}")
     private Long timePeriod;
 
     public List<PoloniexChartData> getBtcDailyChartDataStartingFromYesterday() {
+        ZonedDateTime time = ZonedDateTime.now(ZoneOffset.UTC).minusSeconds(timeStepBack);
         return service.returnChartData(currency,
                 timePeriod,
-                ZonedDateTime.now(ZoneOffset.UTC)
-                        .minusSeconds(timePeriod)
-                        .toEpochSecond());
+                time.toEpochSecond());
     }
 
 
