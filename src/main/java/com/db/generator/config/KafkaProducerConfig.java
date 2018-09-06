@@ -3,6 +3,7 @@ package com.db.generator.config;
 import com.db.generator.message.Message;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.LongSerializer;
+import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,14 +22,14 @@ public class KafkaProducerConfig {
     private String serverAddress;
 
     @Bean
-    public ProducerFactory<Long, Message> producerFactory() {
+    public ProducerFactory<String, Message> producerFactory() {
         Map<String, Object> configProps = new HashMap<>();
         configProps.put(
                 ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,
                 serverAddress);
         configProps.put(
                 ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,
-                LongSerializer.class);
+                StringSerializer.class);
         configProps.put(
                 ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
                 JsonSerializer.class);
@@ -36,7 +37,7 @@ public class KafkaProducerConfig {
     }
 
     @Bean
-    public KafkaTemplate<Long, Message> kafkaTemplate() {
-        return new KafkaTemplate<Long, Message>(producerFactory());
+    public KafkaTemplate<String, Message> kafkaTemplate() {
+        return new KafkaTemplate<String, Message>(producerFactory());
     }
 }
