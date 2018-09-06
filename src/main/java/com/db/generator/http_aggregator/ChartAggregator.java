@@ -28,6 +28,7 @@ public class ChartAggregator {
 
     public List<PoloniexChartData> getBtcDailyChartDataStartingFromYesterday() {
         ZonedDateTime time = ZonedDateTime.now(ZoneOffset.UTC).minusSeconds(timeStepBack);
+        System.out.println("ask: "+time);
         return service.returnChartData(currency,
                 timePeriod,
                 time.toEpochSecond());
