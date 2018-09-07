@@ -24,7 +24,7 @@ public class PoloniexSenderToKafka {
             log.info("Get data from API" + data);
             Message message = dataMapper.mapToDefaultMessage(data);
             System.out.println("Message to sent: " + message);
-            kafkaTemplate.send("topic1", message);
+            kafkaTemplate.send("test", message);
         });
     }
 }
