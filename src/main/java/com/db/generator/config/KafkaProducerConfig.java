@@ -1,8 +1,7 @@
 package com.db.generator.config;
 
-import com.db.generator.message.Message;
+import db.com.model.Message;
 import org.apache.kafka.clients.producer.ProducerConfig;
-import org.apache.kafka.common.serialization.LongSerializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -38,6 +37,6 @@ public class KafkaProducerConfig {
 
     @Bean
     public KafkaTemplate<String, Message> kafkaTemplate() {
-        return new KafkaTemplate<String, Message>(producerFactory());
+        return new KafkaTemplate<>(producerFactory());
     }
 }

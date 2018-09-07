@@ -1,9 +1,8 @@
-package com.db.generator.aggregator;
+package com.db.generator.service;
 
 
 import com.cf.client.poloniex.PoloniexExchangeService;
 import com.cf.data.model.poloniex.PoloniexChartData;
-import com.db.generator.producer.KafkaSender;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.db.generator.factory;
+package com.db.generator.util;
 
 import com.cf.data.model.poloniex.PoloniexChartData;
 
