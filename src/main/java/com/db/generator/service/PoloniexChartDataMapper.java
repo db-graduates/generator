@@ -17,12 +17,12 @@ public class PoloniexChartDataMapper implements APIChartDataMapper<PoloniexChart
         ZonedDateTime date = chartData.date;
         return Message.builder()
             .date(date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")))
-            .high(chartData.high)
-            .low(chartData.low)
-            .volume(chartData.volume)
-            .value(chartData.quoteVolume)
-            .open(chartData.open)
-            .close(chartData.close)
+            .high(chartData.high.longValue())
+            .low(chartData.low.longValue())
+            .volume(chartData.volume.longValue())
+            .value(chartData.quoteVolume.longValue())
+            .open(chartData.open.longValue())
+            .close(chartData.close.longValue())
             .id(IdCreator.getId(chartData))
             .build();
     }
